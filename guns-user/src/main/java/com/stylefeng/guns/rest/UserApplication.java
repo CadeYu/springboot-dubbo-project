@@ -13,8 +13,6 @@ public class UserApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext run =
                 SpringApplication.run(UserApplication.class, args);
-        UserApiImpl userApiImpl =
-                (UserApiImpl)run.getBean("userApiImpl");
-        userApiImpl.isAdmin();
+
     }
 }

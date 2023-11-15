@@ -10,8 +10,5 @@ public class Client {
     @Reference(interfaceClass = UserAPI.class)
     private UserAPI userAPI;
 
-    public boolean testClient() {
-        boolean isAdmin = userAPI.isAdmin();
-        return isAdmin;
-    }
+
 }

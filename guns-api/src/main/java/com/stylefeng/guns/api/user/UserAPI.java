@@ -1,6 +1,6 @@
 package com.stylefeng.guns.api.user;
 public interface UserAPI {
-    boolean isAdmin();
+    int login(String username, String password);
 
     boolean register(UserModel userModel);
 

@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 @Service(interfaceClass = UserAPI.class)
 public class UserApiImpl implements UserAPI {
+
+
     @Override
-    public boolean isAdmin() {
-        System.out.println("userService");
-        return false;
+    public int login(String username, String password) {
+        return 0;
     }
 
     @Override
