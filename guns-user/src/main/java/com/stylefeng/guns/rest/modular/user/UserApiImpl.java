@@ -3,6 +3,8 @@ package com.stylefeng.guns.rest.modular.user;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.api.user.UserAPI;
+import com.stylefeng.guns.api.user.UserInfoModel;
+import com.stylefeng.guns.api.user.UserModel;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,5 +14,25 @@ public class UserApiImpl implements UserAPI {
     public boolean isAdmin() {
         System.out.println("userService");
         return false;
+    }
+
+    @Override
+    public boolean register(UserModel userModel) {
+        return false;
+    }
+
+    @Override
+    public boolean checkUserName(String userName) {
+        return false;
+    }
+
+    @Override
+    public UserInfoModel getUserInfo(int uuid) {
+        return null;
+    }
+
+    @Override
+    public UserInfoModel updateUserInfo(UserInfoModel userInfo) {
+        return null;
     }
 }
