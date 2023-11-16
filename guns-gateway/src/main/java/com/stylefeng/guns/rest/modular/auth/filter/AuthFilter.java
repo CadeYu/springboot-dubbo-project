@@ -40,7 +40,6 @@ public class AuthFilter extends OncePerRequestFilter {
             chain.doFilter(request, response);
             return;
         }
-
         //配置忽略列表
         String ignoreUrl = jwtProperties.getIgnoreUrl();
         String[] split = ignoreUrl.split(",");
@@ -50,13 +49,10 @@ public class AuthFilter extends OncePerRequestFilter {
                 return;
             }
         }
-
-
         final String requestHeader = request.getHeader(jwtProperties.getHeader());
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
-
             //通过token获取用户id,并放入threadlocal里面
             String userId = jwtTokenUtil.getUsernameFromToken(authToken);
             if (userId == null) {
@@ -64,8 +60,6 @@ public class AuthFilter extends OncePerRequestFilter {
             }else {
                 CurrentUser.save(userId);
             }
-
-
             //验证token是否过期,包含了验证jwt是否正确
             try {
                 boolean flag = jwtTokenUtil.isTokenExpired(authToken);
