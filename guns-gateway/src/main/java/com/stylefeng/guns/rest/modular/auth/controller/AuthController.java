@@ -27,15 +27,15 @@ public class AuthController {
     public ResponseVo createAuthenticationToken(AuthRequest authRequest) {
 
         boolean validate = true;
-        int isLogin =
-                userAPI.login(authRequest.getUserName(), authRequest.getPassword());
+        int userId = 3;
+//                userAPI.login(authRequest.getUserName(), authRequest.getPassword());
 
-        if (isLogin == 0) {
+        if (userId == 0) {
             validate = false;
         }
         if (validate) {
             final String randomKey = jwtTokenUtil.getRandomKey();
-            final String token = jwtTokenUtil.generateToken(""+isLogin, randomKey);
+            final String token = jwtTokenUtil.generateToken(""+userId, randomKey);
             return ResponseVo.success(new AuthResponse(token,randomKey));
         } else {
             return ResponseVo.serviceFail("用户名或者密码错误");

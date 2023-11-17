@@ -10,11 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 @EnableDubboConfiguration
 public class GatewayApplication {
     public static void main(String[] args) {
-        ConfigurableApplicationContext run =
-                SpringApplication.run(GatewayApplication.class, args);
-        Client client =
-                (Client)run.getBean("client");
-        boolean b = client.testClient();
-        System.out.println(b);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 }
