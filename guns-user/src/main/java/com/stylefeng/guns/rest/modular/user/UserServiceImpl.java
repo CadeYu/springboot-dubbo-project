@@ -87,6 +87,7 @@ public class UserServiceImpl implements UserAPI {
         userInfoModel.setNickname(moocUserT.getNickName());
         userInfoModel.setPhone(moocUserT.getUserPhone());
         userInfoModel.setSex(moocUserT.getUserSex());
+        userInfoModel.setUuid(moocUserT.getUuid());
 
         return userInfoModel;
     }
