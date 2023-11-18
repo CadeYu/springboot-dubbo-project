@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-
-
-
     @Reference(interfaceClass = UserAPI.class)
     private UserAPI userAPI;
 
@@ -43,10 +40,6 @@ public class UserController {
 
     }
 
-
-
-
-
     @RequestMapping(value = "/check",method = RequestMethod.POST)
     public ResponseVo check(String userName){
        
@@ -58,16 +51,12 @@ public class UserController {
                 return ResponseVo.serviceFail("用户名已存在");
             }
         }
-        
         return ResponseVo.serviceFail("用户名不能为空");
-
     }
 
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public ResponseVo logout(String userName){
-
-
         return ResponseVo.success("用户退出成功");
     }
 
@@ -103,20 +92,8 @@ public class UserController {
             }else {
                 return ResponseVo.serviceFail("修改用户信息失败");
             }
-
         }else {
             return ResponseVo.serviceFail("用户未登陆");
         }
-
-
     }
-
-
-
-
-
-
-
-
-
 }
