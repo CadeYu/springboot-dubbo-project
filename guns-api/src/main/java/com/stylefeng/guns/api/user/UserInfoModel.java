@@ -1,14 +1,13 @@
 package com.stylefeng.guns.api.user;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 获取用户信息所操纵的对象
  */
-public class UserInfoModel {
-
-
-    private long uuid;
+public class UserInfoModel implements Serializable {
+    private int uuid;
     private String username;
     private String nickname;
     private String email;
@@ -22,11 +21,11 @@ public class UserInfoModel {
     private Date createTime;
     private Date updateTime;
 
-    public long getUuid() {
+    public int getUuid() {
         return uuid;
     }
 
-    public void setUuid(long uuid) {
+    public void setUuid(int uuid) {
         this.uuid = uuid;
     }
     public String getUsername() {

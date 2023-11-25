@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.rest.common.persistence.dao.UserMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.stylefeng.guns.rest.common.persistence.model.User">
+	<resultMap id="BaseResultMap1" type="com.stylefeng.guns.rest.common.persistence.model.User">
 		<id column="id" property="id" />
 		<result column="userName" property="userName" />
 	</resultMap>

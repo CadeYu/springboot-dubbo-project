@@ -107,6 +107,7 @@ public class UserServiceImpl implements UserAPI {
         moocUserT.setNickName(userInfoModel.getNickname());
         moocUserT.setBeginTime(userInfoModel.getCreateTime());
         moocUserT.setUpdateTime(transfer2Date(System.currentTimeMillis()));
+        moocUserT.setUuid(userInfoModel.getUuid());
         return moocUserT;
     }
 
