@@ -1,8 +1,5 @@
 package com.stylefeng.guns.rest.common;
 
-import com.stylefeng.guns.api.user.UserInfoModel;
-import com.stylefeng.guns.api.user.UserModel;
-
 public class CurrentUser {
 
     //和线程相关的存储空间，每一个线程都不一样
