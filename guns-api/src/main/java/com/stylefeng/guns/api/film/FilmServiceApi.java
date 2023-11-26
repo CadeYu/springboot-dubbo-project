@@ -9,7 +9,7 @@ import java.util.List;
 public interface FilmServiceApi {
 
     //获取Banners
-    public BannerVO getBanners();
+    public List<BannerVO> getBanners();
 
     //获取热门影片
 
