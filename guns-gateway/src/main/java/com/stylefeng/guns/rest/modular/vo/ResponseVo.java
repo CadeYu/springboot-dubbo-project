@@ -13,6 +13,9 @@ public class ResponseVo<T> {
     //返回的数据实体
     private T data;
 
+    //图片前缀
+    private String imgPre;
+
     //单例模式，不允许外面创建实体
     public ResponseVo(){}
 
@@ -32,6 +35,14 @@ public class ResponseVo<T> {
         return responseVo;
     }
 
+
+    public static<T> ResponseVo success(String imgPre,T data){
+        ResponseVo responseVo = new ResponseVo();
+        responseVo.setStatus(0);
+        responseVo.setData(data);
+        responseVo.setImgPre(imgPre);
+        return responseVo;
+    }
     public static<T> ResponseVo serviceFail(String msg){
         ResponseVo responseVo = new ResponseVo();
         responseVo.setStatus(1);
@@ -44,6 +55,14 @@ public class ResponseVo<T> {
         responseVo.setStatus(999);
         responseVo.setMsg(msg);
         return responseVo;
+    }
+
+    public String getImgPre() {
+        return imgPre;
+    }
+
+    public void setImgPre(String imgPre) {
+        this.imgPre = imgPre;
     }
 
     public int getStatus() {
