@@ -3,6 +3,10 @@ package com.stylefeng.guns.rest.modular.film;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.api.film.FilmServiceApi;
 import com.stylefeng.guns.api.film.vo.BannerVO;
+import com.stylefeng.guns.api.film.vo.CatVO;
+import com.stylefeng.guns.api.film.vo.SourceVO;
+import com.stylefeng.guns.api.film.vo.YearVO;
+import com.stylefeng.guns.rest.modular.film.vo.FilmConditionVO;
 import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
 import com.stylefeng.guns.rest.modular.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -60,14 +65,99 @@ public class FilmController {
                                        @RequestParam(name = "yearId",required = false,defaultValue = "99") String yearId
                                        )
     {
-        //类型集合
+        FilmConditionVO filmConditionVO = new FilmConditionVO();
 
-        //片源集合
+        // 标识位
+        boolean flag = false;
+        // 类型集合
+        List<CatVO> cats = filmServiceApi.getCat();
+        List<CatVO> catResult = new ArrayList<>();
+        CatVO cat = null;
+        for(CatVO catVO : cats){
+            // 判断集合是否存在catId，如果存在，则将对应的实体变成active状态
+            // 6
+            // 1,2,3,99,4,5 ->
 
-        //年代集合
+            if(catVO.getCatId().equals("99")){
+                cat = catVO;
+                continue;
+            }
+            if(catVO.getCatId().equals(catId)){
+                flag = true;
+                catVO.setActive(true);
+            }else{
+                catVO.setActive(false);
+            }
+            catResult.add(catVO);
+        }
+        // 如果不存在，则默认将全部变为Active状态
+        if(!flag){
+            cat.setActive(true);
+            catResult.add(cat);
+        }else{
+            cat.setActive(false);
+            catResult.add(cat);
+        }
 
 
+        // 片源集合
+        flag=false;
+        List<SourceVO> sources = filmServiceApi.getSource();
+        List<SourceVO> sourceResult = new ArrayList<>();
+        SourceVO sourceVO = null;
+        for(SourceVO source : sources){
+            if(source.getSourceId().equals("99")){
+                sourceVO = source;
+                continue;
+            }
+            if(source.getSourceId().equals(catId)){
+                flag = true;
+                source.setActive(true);
+            }else{
+                source.setActive(false);
+            }
+            sourceResult.add(source);
+        }
+        // 如果不存在，则默认将全部变为Active状态
+        if(!flag){
+            sourceVO.setActive(true);
+            sourceResult.add(sourceVO);
+        }else{
+            sourceVO.setActive(false);
+            sourceResult.add(sourceVO);
+        }
 
-        return null;
+        // 年代集合
+        flag=false;
+        List<YearVO> years = filmServiceApi.getYear();
+        List<YearVO> yearResult = new ArrayList<>();
+        YearVO yearVO = null;
+        for(YearVO year : years){
+            if(year.getYearId().equals("99")){
+                yearVO = year;
+                continue;
+            }
+            if(year.getYearId().equals(catId)){
+                flag = true;
+                year.setActive(true);
+            }else{
+                year.setActive(false);
+            }
+            yearResult.add(year);
+        }
+        // 如果不存在，则默认将全部变为Active状态
+        if(!flag){
+            yearVO.setActive(true);
+            yearResult.add(yearVO);
+        }else{
+            yearVO.setActive(false);
+            yearResult.add(yearVO);
+        }
+
+        filmConditionVO.setCatInfo(catResult);
+        filmConditionVO.setSourceInfo(sourceResult);
+        filmConditionVO.setYearInfo(yearResult);
+
+        return ResponseVo.success(filmConditionVO);
     }
 }
