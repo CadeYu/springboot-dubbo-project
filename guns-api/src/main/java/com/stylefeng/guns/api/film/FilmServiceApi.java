@@ -17,10 +17,15 @@ public interface FilmServiceApi {
      * @param number：限制多少
      * @return
      */
-    public FilmVO getHotFilms(boolean isLimited,int number);
+    public FilmVO getHotFilms(boolean isLimited,int number,int nowPage,int yearId,int sourceId,int catId,int sortId);
 
     //获取即将上映的电影
-    public FilmVO getUpcomingFilms(boolean isLimited,int number);
+    public FilmVO getUpcomingFilms(boolean isLimited,int number,int nowPage,int yearId,int sourceId,int catId,int sortId);
+
+    //获取经典电影
+    public FilmVO getClassicialFilms(int number,int nowPage,int yearId,int sourceId,int catId,int sortId);
+
+
 
     //获取票房排名
     public List<FilmInfo> getBoxRanking();

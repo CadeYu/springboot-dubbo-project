@@ -1,8 +1,11 @@
 package com.stylefeng.guns.rest.modular.vo;
 
+import lombok.Data;
+
 /**
  * 返回值专用类
  */
+@Data
 public class ResponseVo<T> {
 
     //状态 0成功，1失败，999系统异常
@@ -15,6 +18,11 @@ public class ResponseVo<T> {
 
     //图片前缀
     private String imgPre;
+
+
+    private int nowPage;
+
+    private int totalPage;
 
     //单例模式，不允许外面创建实体
     public ResponseVo(){}
@@ -35,6 +43,17 @@ public class ResponseVo<T> {
         return responseVo;
     }
 
+
+
+    public static<T> ResponseVo success(String imgPre,T data,int totalPage,int nowPage){
+        ResponseVo responseVo = new ResponseVo();
+        responseVo.setStatus(0);
+        responseVo.setData(data);
+        responseVo.setImgPre(imgPre);
+        responseVo.setNowPage(nowPage);
+        responseVo.setTotalPage(totalPage);
+        return responseVo;
+    }
 
     public static<T> ResponseVo success(String imgPre,T data){
         ResponseVo responseVo = new ResponseVo();
@@ -57,35 +76,4 @@ public class ResponseVo<T> {
         return responseVo;
     }
 
-    public String getImgPre() {
-        return imgPre;
-    }
-
-    public void setImgPre(String imgPre) {
-        this.imgPre = imgPre;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }
