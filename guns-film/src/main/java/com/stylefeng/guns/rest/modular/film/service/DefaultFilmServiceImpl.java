@@ -318,4 +318,20 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
 
         return res;
     }
+
+    @Override
+    public FilmDetailVO getFilmDetail(int searchType, String searchParam) {
+        //searchType：1，按名称，2，按ID
+
+
+
+
+
+
+
+
+
+
+        return null;
+    }
 }

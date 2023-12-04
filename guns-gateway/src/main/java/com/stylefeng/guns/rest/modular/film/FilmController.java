@@ -8,10 +8,7 @@ import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
 import com.stylefeng.guns.rest.modular.film.vo.FilmRequestVO;
 import com.stylefeng.guns.rest.modular.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.management.BufferPoolMXBean;
 import java.util.ArrayList;
@@ -190,4 +187,10 @@ public class FilmController {
         return ResponseVo.success(IMG_PRE, filmVO.getFilmInfos(),filmVO.getTotalPage(), filmVO.getNowPage());
     }
 
+
+    @RequestMapping(value = "/film/{searchParam}",method = RequestMethod.GET)
+    public ResponseVo films(@PathVariable("searchParam") String searchParam,int requestType){
+
+        return null;
+    }
 }

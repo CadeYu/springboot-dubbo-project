@@ -46,5 +46,11 @@ public interface FilmServiceApi {
     //年份
     List<YearVO> getYear();
 
+    //根据影片ID或者名称获取影片信息
+    FilmDetailVO getFilmDetail(int searchType,String searchParam);
+
+    //获取影片相关的其他信息
+
+
 
 }
