@@ -189,8 +189,28 @@ public class FilmController {
 
 
     @RequestMapping(value = "/film/{searchParam}",method = RequestMethod.GET)
-    public ResponseVo films(@PathVariable("searchParam") String searchParam,int requestType){
+    public ResponseVo films(@PathVariable("searchParam") String searchParam,int searchType){
 
-        return null;
+        FilmDetailVO filmDetail = filmServiceApi.getFilmDetail(searchType, searchParam);
+        String filmId = filmDetail.getFilmId();
+        FilmDescVO filmDesc = filmServiceApi.getFilmDesc(filmId);
+        List<ActorVO> actor = filmServiceApi.getActor(filmId);
+        ImgVO imgs = filmServiceApi.getImgs(filmId);
+        ActorVO dectInfo = filmServiceApi.getDectInfo(filmId);
+
+        InfoRequestVO infoRequest = new InfoRequestVO();
+
+        ActorRequestVO actorRequest = new ActorRequestVO();
+
+        actorRequest.setActors(actor);
+        actorRequest.setDirector(dectInfo);
+        infoRequest.setImg(imgs);
+        infoRequest.setFilmId(filmId);
+        infoRequest.setActors(actorRequest);
+        infoRequest.setBiography(filmDesc.getBiography());
+
+        filmDetail.setInfo04(infoRequest);
+
+        return ResponseVo.success(IMG_PRE,filmDetail);
     }
 }

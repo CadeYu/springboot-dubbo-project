@@ -50,7 +50,13 @@ public interface FilmServiceApi {
     FilmDetailVO getFilmDetail(int searchType,String searchParam);
 
     //获取影片相关的其他信息
+    FilmDescVO getFilmDesc(String filmId);
 
+    ActorVO getDectInfo(String filmId);
+
+    ImgVO getImgs(String filmId);
+
+    List<ActorVO> getActor(String filmId);
 
 
 }
