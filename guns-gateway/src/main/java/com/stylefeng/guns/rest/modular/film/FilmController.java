@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.stylefeng.guns.api.film.FilmAsyncServiceApi;
 import com.stylefeng.guns.api.film.FilmServiceApi;
 import com.stylefeng.guns.api.film.vo.*;
 import com.stylefeng.guns.rest.modular.film.vo.FilmConditionVO;
@@ -20,6 +21,9 @@ public class FilmController {
 
     @Reference(interfaceClass = FilmServiceApi.class,check = false)
     private FilmServiceApi filmServiceApi;
+
+    @Reference(interfaceClass = FilmAsyncServiceApi.class,async = true,check = false)
+    private FilmAsyncServiceApi filmAsyncServiceApi;
 
     private final static String IMG_PRE = "http://maoyan.com/";
 
@@ -193,10 +197,10 @@ public class FilmController {
 
         FilmDetailVO filmDetail = filmServiceApi.getFilmDetail(searchType, searchParam);
         String filmId = filmDetail.getFilmId();
-        FilmDescVO filmDesc = filmServiceApi.getFilmDesc(filmId);
-        List<ActorVO> actor = filmServiceApi.getActor(filmId);
-        ImgVO imgs = filmServiceApi.getImgs(filmId);
-        ActorVO dectInfo = filmServiceApi.getDectInfo(filmId);
+        FilmDescVO filmDesc = filmAsyncServiceApi.getFilmDesc(filmId);
+        List<ActorVO> actor = filmAsyncServiceApi.getActor(filmId);
+        ImgVO imgs = filmAsyncServiceApi.getImgs(filmId);
+        ActorVO dectInfo = filmAsyncServiceApi.getDectInfo(filmId);
 
         InfoRequestVO infoRequest = new InfoRequestVO();
 
